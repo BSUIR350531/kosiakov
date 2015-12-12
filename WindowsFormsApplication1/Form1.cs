@@ -24,8 +24,15 @@ namespace WindowsFormsApplication1
         //texts
         private string fileNotExist = "Invalid file path",
                         fileNotExistCaption = "File doesn't exist",
+                        outputFilePathNotValid = "Invalid output file path",
+                        outputFilePathNotValidCaption = "Ouptput file doesn't exist",
                         saveDailogTitle = "Select output file",
-                        openDailogTitle = "Select source file";
+                        openDailogTitle = "Select source file",
+                        zippingButtonText = "Start zipping",
+                        unzippingButtonText = "Start unzipping";
+
+        private bool isHfs;
+        private string lastOpenedExistFileName;
 
         private void setLabelsVisibility(bool isShowLables){
             lableFileName.Enabled = isShowLables;
@@ -85,6 +92,27 @@ namespace WindowsFormsApplication1
 
             return saveFileD;
         }
+        private void unzippingLogic(SaveFileDialog saveDialog)
+        {
+            
+        }
+        private void zippingLogic(SaveFileDialog saveDialog)
+        {
+            
+        }
+
+        private bool isHfsFile( string fileName) {
+            string type = "hfs";
+            Array arr = fileName.Split('.');
+            int lastIndex = arr.Length - 1;
+            return arr.GetValue(lastIndex).ToString() == type;
+        }
+
+        private void updateActionButtonText(bool isZipping)
+        {
+            actionButton.Text = isZipping ? zippingButtonText : unzippingButtonText; 
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //create a dialog to open file
@@ -94,28 +122,46 @@ namespace WindowsFormsApplication1
             //if dialog closed and selected file exists -> continue
             if (result == DialogResult.OK && File.Exists(dialog.FileName)) {
                 String fileName = dialog.FileName;
-                try
-                {
+                lastOpenedExistFileName = fileName;
+                isHfs = isHfsFile(dialog.SafeFileName);
 
-                    openNewFile.Enabled = false;
-                    openNewFile.Visible = false;
+                openNewFile.Enabled = false;
+                openNewFile.Visible = false;
+                //update action button state
+                setButtonVisibility(actionButton, true);
+                updateActionButtonText(isHfs);
+                //update file info labels
+                String text = File.ReadAllText(fileName);
+                setLabelsVisibility(true);
+                setLablesText(getFileName(fileName), text.Length);
 
-                    setButtonVisibility(actionButton, true);
-
-                    String text = File.ReadAllText(fileName);
-                    setLabelsVisibility(true);
-                    setLablesText(getFileName(fileName), text.Length);
-                }
-                catch { 
-                }
-            } else {    //selected file doesn't exist :(
-                showWarning(fileNotExist, fileNotExistCaption);
+            } else if (result != DialogResult.Cancel && result != DialogResult.Abort){    
+                //selected file doesn't exist :(
+                 showWarning(fileNotExist, fileNotExistCaption);
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            if (lastOpenedExistFileName != "")
+            {
+                setLabelsVisibility(false);
+                SaveFileDialog saveDialog = fileSaveDialog();
+                DialogResult result = saveDialog.ShowDialog();
+                if (result == DialogResult.OK && Path.GetFileName(saveDialog.FileName).Length != 0)
+                {
+                    setButtonVisibility(actionButton, false);
+                    if (isHfs){
+                        unzippingLogic(saveDialog);
+                    }
+                    else {
+                        zippingLogic(saveDialog);
+                    }
+                } else if(result != DialogResult.Cancel && result != DialogResult.Abort) {
+                    //selected output file doesn't exist :(
+                    showWarning(outputFilePathNotValid, outputFilePathNotValidCaption);
+                }
+            }
         }
     }
 }
