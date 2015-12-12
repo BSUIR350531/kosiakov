@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using JadBenAutho.Tools;
 
 namespace WindowsFormsApplication1
 {
@@ -18,6 +19,11 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             setLabelsVisibility(false);
         }
+
+        private HuffmanAlgorithm AL = new HuffmanAlgorithm();
+        //texts
+        private string fileNotExist = "Invalid file path",
+                        fileNotExistCaption = "File doesn't exist";
 
         private void setLabelsVisibility(bool isShowLables){
             lableFileName.Enabled = isShowLables;
@@ -42,26 +48,42 @@ namespace WindowsFormsApplication1
             return arr.GetValue(lastIndex).ToString();
         }
 
+        private void showWarning(string text, string caption)
+        {
+            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void setButtonVisibility(System.Windows.Forms.Button button, bool isShow = false)
+        {
+            button.Enabled = isShow;
+            button.Visible = isShow;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            //create a dialog to open file
             OpenFileDialog dialog = new OpenFileDialog();
             DialogResult result = dialog.ShowDialog();
 
-            if (result == DialogResult.OK) {
+            //if dialog closed and selected file exists -> continue
+            if (result == DialogResult.OK && File.Exists(dialog.FileName)) {
                 String fileName = dialog.FileName;
                 try
                 {
+
                     openNewFile.Enabled = false;
                     openNewFile.Visible = false;
 
-                    actionButton.Enabled = true;
-                    actionButton.Visible = true;
+                    setButtonVisibility(actionButton, true);
+
                     String text = File.ReadAllText(fileName);
                     setLabelsVisibility(true);
                     setLablesText(getFileName(fileName), text.Length);
                 }
                 catch { 
                 }
+            } else {    //selected file doesn't exist :(
+                showWarning(fileNotExist, fileNotExistCaption);
             }
         }
 

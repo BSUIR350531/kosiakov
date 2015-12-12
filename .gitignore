@@ -1,0 +1,5 @@
+/.vs/
+/WindowsFormsApplication1/bin/*.*
+TestResults
+bin
+obj
