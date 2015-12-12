@@ -34,6 +34,8 @@
             this.lableSizeFile = new System.Windows.Forms.Label();
             this.lablelFileNameText = new System.Windows.Forms.Label();
             this.lableFileNameSize = new System.Windows.Forms.Label();
+            this.processProgress = new System.Windows.Forms.ProgressBar();
+            this.resetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openNewFile
@@ -68,7 +70,7 @@
             this.lableFileName.AutoSize = true;
             this.lableFileName.Location = new System.Drawing.Point(126, 243);
             this.lableFileName.Name = "lableFileName";
-            this.lableFileName.Size = new System.Drawing.Size(76, 37);
+            this.lableFileName.Size = new System.Drawing.Size(41, 19);
             this.lableFileName.TabIndex = 2;
             this.lableFileName.Text = "File:";
             // 
@@ -77,7 +79,7 @@
             this.lableSizeFile.AutoSize = true;
             this.lableSizeFile.Location = new System.Drawing.Point(126, 309);
             this.lableSizeFile.Name = "lableSizeFile";
-            this.lableSizeFile.Size = new System.Drawing.Size(81, 37);
+            this.lableSizeFile.Size = new System.Drawing.Size(43, 19);
             this.lableSizeFile.TabIndex = 3;
             this.lableSizeFile.Text = "Size:";
             // 
@@ -86,7 +88,7 @@
             this.lablelFileNameText.AutoSize = true;
             this.lablelFileNameText.Location = new System.Drawing.Point(208, 243);
             this.lablelFileNameText.Name = "lablelFileNameText";
-            this.lablelFileNameText.Size = new System.Drawing.Size(76, 37);
+            this.lablelFileNameText.Size = new System.Drawing.Size(41, 19);
             this.lablelFileNameText.TabIndex = 4;
             this.lablelFileNameText.Text = "File:";
             // 
@@ -95,15 +97,36 @@
             this.lableFileNameSize.AutoSize = true;
             this.lableFileNameSize.Location = new System.Drawing.Point(208, 309);
             this.lableFileNameSize.Name = "lableFileNameSize";
-            this.lableFileNameSize.Size = new System.Drawing.Size(76, 37);
+            this.lableFileNameSize.Size = new System.Drawing.Size(41, 19);
             this.lableFileNameSize.TabIndex = 5;
             this.lableFileNameSize.Text = "File:";
             // 
+            // processProgress
+            // 
+            this.processProgress.Location = new System.Drawing.Point(121, 175);
+            this.processProgress.Name = "processProgress";
+            this.processProgress.Size = new System.Drawing.Size(431, 41);
+            this.processProgress.TabIndex = 6;
+            this.processProgress.Visible = false;
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(498, 119);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(99, 50);
+            this.resetButton.TabIndex = 7;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Visible = false;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
             // mainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 36F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 429);
+            this.ClientSize = new System.Drawing.Size(684, 461);
+            this.Controls.Add(this.resetButton);
+            this.Controls.Add(this.processProgress);
             this.Controls.Add(this.lableFileNameSize);
             this.Controls.Add(this.lablelFileNameText);
             this.Controls.Add(this.lableSizeFile);
@@ -129,6 +152,8 @@
         private System.Windows.Forms.Label lableSizeFile;
         private System.Windows.Forms.Label lablelFileNameText;
         private System.Windows.Forms.Label lableFileNameSize;
+        private System.Windows.Forms.ProgressBar processProgress;
+        private System.Windows.Forms.Button resetButton;
     }
 }
 

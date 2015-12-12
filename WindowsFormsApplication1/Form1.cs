@@ -17,10 +17,10 @@ namespace WindowsFormsApplication1
         public mainForm()
         {
             InitializeComponent();
-            setLabelsVisibility(false);
+            resetAllToStart();
         }
 
-        private HuffmanAlgorithm AL = new HuffmanAlgorithm();
+        private HuffmanAlgorithm huffmanAlg = new HuffmanAlgorithm();
         //texts
         private string fileNotExist = "Invalid file path",
                         fileNotExistCaption = "File doesn't exist",
@@ -29,11 +29,21 @@ namespace WindowsFormsApplication1
                         saveDailogTitle = "Select output file",
                         openDailogTitle = "Select source file",
                         zippingButtonText = "Start zipping",
-                        unzippingButtonText = "Start unzipping";
+                        unzippingButtonText = "Start unzipping",
+                        zippingProcessText = "File has zipped successfully",
+                        zippingProcessTextCaption = "Done zipping";
 
         private bool isHfs;
         private string lastOpenedExistFileName;
 
+        private void resetAllToStart(){
+            setButtonVisibility(actionButton, false);
+            processProgress.Visible = false;
+            processProgress.Value = 0;
+            setLabelsVisibility(false);
+            setButtonVisibility(openNewFile, true);
+            setButtonVisibility(resetButton, false);
+        }
         private void setLabelsVisibility(bool isShowLables){
             lableFileName.Enabled = isShowLables;
             lableFileName.Visible = isShowLables;
@@ -60,6 +70,11 @@ namespace WindowsFormsApplication1
         private void showWarning(string text, string caption)
         {
             MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void showInfo(string text, string caption)
+        {
+            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void setButtonVisibility(System.Windows.Forms.Button button, bool isShow = false)
@@ -92,13 +107,29 @@ namespace WindowsFormsApplication1
 
             return saveFileD;
         }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            resetAllToStart();
+        }
+
         private void unzippingLogic(SaveFileDialog saveDialog)
         {
             
         }
         private void zippingLogic(SaveFileDialog saveDialog)
         {
-            
+            string outputFile = saveDialog.FileName;
+            huffmanAlg.PercentCompleted += new PercentCompletedEventHandler(progressStep);
+            FileStream D = new FileStream(outputFile, FileMode.Create);
+            D.Close();
+            // create stream to a zipped file
+            FileStream zipStream = new FileStream(lastOpenedExistFileName, FileMode.Open);
+            huffmanAlg.ShrinkWithProgress(zipStream, outputFile, null);
+            zipStream.Close();
+            showInfo(zippingProcessText, zippingProcessTextCaption);
+
+            resetAllToStart();
         }
 
         private bool isHfsFile( string fileName) {
@@ -125,8 +156,9 @@ namespace WindowsFormsApplication1
                 lastOpenedExistFileName = fileName;
                 isHfs = isHfsFile(dialog.SafeFileName);
 
-                openNewFile.Enabled = false;
-                openNewFile.Visible = false;
+                setButtonVisibility(openNewFile, false);
+                setButtonVisibility(resetButton, true);
+                
                 //update action button state
                 setButtonVisibility(actionButton, true);
                 updateActionButtonText(isHfs);
@@ -141,6 +173,11 @@ namespace WindowsFormsApplication1
             }
         }
 
+        private void progressStep()
+        {
+            processProgress.PerformStep();
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             if (lastOpenedExistFileName != "")
@@ -151,6 +188,9 @@ namespace WindowsFormsApplication1
                 if (result == DialogResult.OK && Path.GetFileName(saveDialog.FileName).Length != 0)
                 {
                     setButtonVisibility(actionButton, false);
+                    setButtonVisibility(resetButton, false);
+                    //show progress bar
+                    processProgress.Visible = true;
                     if (isHfs){
                         unzippingLogic(saveDialog);
                     }
