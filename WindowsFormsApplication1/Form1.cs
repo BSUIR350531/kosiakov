@@ -23,7 +23,9 @@ namespace WindowsFormsApplication1
         private HuffmanAlgorithm AL = new HuffmanAlgorithm();
         //texts
         private string fileNotExist = "Invalid file path",
-                        fileNotExistCaption = "File doesn't exist";
+                        fileNotExistCaption = "File doesn't exist",
+                        saveDailogTitle = "Select output file",
+                        openDailogTitle = "Select source file";
 
         private void setLabelsVisibility(bool isShowLables){
             lableFileName.Enabled = isShowLables;
@@ -58,11 +60,35 @@ namespace WindowsFormsApplication1
             button.Enabled = isShow;
             button.Visible = isShow;
         }
+        private OpenFileDialog fileOpenDialog()
+        {
+            OpenFileDialog openFileD = new OpenFileDialog();
+            openFileD.FileName = "";
+            openFileD.Filter = "All files(*.*)|*.*";
+            openFileD.Multiselect = false;
+            openFileD.CheckPathExists = true;
+            openFileD.ShowHelp = false;
+            openFileD.Title = openDailogTitle;
+            openFileD.ShowReadOnly = true;
 
+            return openFileD;
+        }
+
+        private SaveFileDialog fileSaveDialog()
+        {
+            SaveFileDialog saveFileD = new SaveFileDialog();
+            saveFileD.DefaultExt = "*.hfs";
+            saveFileD.Filter = "Huffman Stream files(*.hfs)|*.hfs";
+            saveFileD.CheckPathExists = false;
+            saveFileD.ShowHelp = false;
+            saveFileD.Title = saveDailogTitle;
+
+            return saveFileD;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             //create a dialog to open file
-            OpenFileDialog dialog = new OpenFileDialog();
+            OpenFileDialog dialog = fileOpenDialog();
             DialogResult result = dialog.ShowDialog();
 
             //if dialog closed and selected file exists -> continue
