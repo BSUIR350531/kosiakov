@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1
 
     class HaffmanClass
     {
+        private Converter convert = new Converter();
         public void Zip(string readFile, string writeFile)
         {
             //vars
@@ -40,6 +41,23 @@ namespace WindowsFormsApplication1
             readStream.Close();
 
             //2) write length of occurances and occurances to output file: create functions for convertion int to byte and back
+            FileStream writeStream = new FileStream(writeFile, FileMode.Create, FileAccess.Write);
+            //write occurances length
+            byte[] countInByte = convert.intToByte(symbolOccurrences.Count);
+            for (i = 0; i < 4; i++)
+            {
+                writeStream.WriteByte(countInByte[i]);
+            }
+            //write occurances
+            foreach (var occur in symbolOccurrences)
+            {
+                writeStream.WriteByte(occur.Key);
+                byte[] occurInByte = convert.intToByte(occur.Value);
+                for(i = 0; i < 4; i++)
+                {
+                    writeStream.WriteByte(occurInByte[i]);
+                }
+            }
 
             //3) create tree from occurances: create Tree class
 
