@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
         private int byte2 = 256;
         private int byte3 = 65536;
         private int byte4 = 16777216;
-        private string errorMessage = "Cannot convert to int";
+        private string errorMessage = "Cannot convert";
         public int byteToInt(byte[] bytes)
         {
             if (bytes.Length != 4)
