@@ -41,11 +41,39 @@ namespace WindowsFormsApplication1
             amount++;
             int i = amount;
             nodes[i] = newNode;
-            while( i > 1 && nodes[getParentIndex(i)].CompareTo(nodes[i]) < 0)
+            while( i > 1 && nodes[getParentIndex(i)].CompareTo(nodes[i]) > 0)
             {
                 int parentIndex = getParentIndex(i);
                 swapElements(ref nodes[i], ref nodes[parentIndex]);
                 i = parentIndex;
+            }
+        }
+        public treeNode popMinNode()
+        {
+            treeNode minNode = nodes[1];
+            nodes[1] = nodes[amount];
+            amount--;
+            setChildPositionsFor(1);
+            return minNode;
+        }
+        private void setChildPositionsFor(int index) {
+            int leftIndex = getLeftNodeIndex(index),
+                rightIndex = getRightNodeIndex(index),
+                smallestIndex;
+            if(leftIndex <= amount && nodes[leftIndex].CompareTo(nodes[index]) < 0) {
+                smallestIndex = leftIndex;
+            } else
+            {
+                smallestIndex = index;
+            }
+            if (rightIndex <= amount && nodes[rightIndex].CompareTo(nodes[smallestIndex]) < 0)
+            {
+                smallestIndex = rightIndex;
+            }
+            if (smallestIndex != index)
+            {
+                swapElements(ref nodes[index], ref nodes[smallestIndex]);
+                setChildPositionsFor(smallestIndex);
             }
         }
     }

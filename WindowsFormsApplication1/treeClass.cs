@@ -24,8 +24,16 @@ namespace WindowsFormsApplication1
             {
                 nodeParser.addNode(new treeNode(occur.Value, occur.Key));
             }
+
+            int amount = occurTable.Count;
+            for (int i = 0; i < amount -1; ++i)
+            {
+                treeNode leftNode = nodeParser.popMinNode();
+                treeNode rightNode = nodeParser.popMinNode();
+                nodeParser.addNode(new treeNode(leftNode, rightNode, leftNode.weight + rightNode.weight));
+            }
             //should return full tree node
-            return new TreeClass(new treeNode());
+            return new TreeClass(nodeParser.popMinNode());
         }
     }
 }

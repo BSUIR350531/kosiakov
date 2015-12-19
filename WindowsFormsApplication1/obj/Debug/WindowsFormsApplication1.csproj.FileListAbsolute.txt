@@ -16,3 +16,4 @@ C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Pro
 C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache

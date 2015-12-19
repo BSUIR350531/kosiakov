@@ -22,6 +22,12 @@ namespace WindowsFormsApplication1
             weight = nodeWeight;
             value = nodeValue;
         }
+        public treeNode(treeNode leftNode, treeNode rightNode, int cammonWeight)
+        {
+            left = leftNode;
+            right = rightNode;
+            weight = cammonWeight;
+        }
         public int CompareTo(treeNode anotherNode)
         {
             if(weight > anotherNode.weight)
