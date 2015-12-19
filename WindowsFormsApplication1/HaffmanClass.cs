@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1
 
     class HaffmanClass
     {
-        private Converter convert = new Converter();
+        private converterClass convert = new converterClass();
         public void Zip(string readFile, string writeFile)
         {
             //vars
@@ -60,6 +60,7 @@ namespace WindowsFormsApplication1
             }
 
             //3) create tree from occurances: create Tree class
+            TreeClass tree = TreeClass.createTree(symbolOccurrences);
 
             //4) create code for each element from occurance dictionary
 

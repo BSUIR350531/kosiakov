@@ -16,9 +16,14 @@ namespace WindowsFormsApplication1
             leafNode = node;
             codesTable = new Dictionary<byte, string>();
         }
-        public TreeClass createTree(Dictionary<byte, int> occurTable)
+        public static TreeClass createTree(Dictionary<byte, int> occurTable)
         {
             //need create something like list of treeNodes
+            treeNodeParser nodeParser = new treeNodeParser();
+            foreach(var occur in occurTable)
+            {
+                nodeParser.addNode(new treeNode(occur.Value, occur.Key));
+            }
             //should return full tree node
             return new TreeClass(new treeNode());
         }

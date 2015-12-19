@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using JadBenAutho.Tools;
+//using JadBenAutho.Tools;
 
 namespace WindowsFormsApplication1
 {
@@ -20,7 +20,8 @@ namespace WindowsFormsApplication1
             resetAllToStart();
         }
 
-        private HuffmanAlgorithm huffmanAlg = new HuffmanAlgorithm();
+        //private HuffmanAlgorithm huffmanAlg = new HuffmanAlgorithm();
+        private HaffmanClass haffman = new HaffmanClass();
         //texts
         private string fileNotExist = "Invalid file path",
                         fileNotExistCaption = "File doesn't exist",
@@ -120,13 +121,14 @@ namespace WindowsFormsApplication1
         private void zippingLogic(SaveFileDialog saveDialog)
         {
             string outputFile = saveDialog.FileName;
-            huffmanAlg.PercentCompleted += new PercentCompletedEventHandler(progressStep);
-            FileStream D = new FileStream(outputFile, FileMode.Create);
-            D.Close();
+            //huffmanAlg.PercentCompleted += new PercentCompletedEventHandler(progressStep);
+            //FileStream D = new FileStream(outputFile, FileMode.Create);
+            //D.Close();
             // create stream to a zipped file
-            FileStream zipStream = new FileStream(lastOpenedExistFileName, FileMode.Open);
-            huffmanAlg.ShrinkWithProgress(zipStream, outputFile, null);
-            zipStream.Close();
+            //FileStream zipStream = new FileStream(lastOpenedExistFileName, FileMode.Open);
+            haffman.Zip(lastOpenedExistFileName, outputFile);
+            //huffmanAlg.ShrinkWithProgress(zipStream, outputFile, null);
+            //zipStream.Close();
             showInfo(zippingProcessText, zippingProcessTextCaption);
 
             resetAllToStart();

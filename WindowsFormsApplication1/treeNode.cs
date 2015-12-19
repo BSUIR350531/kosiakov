@@ -22,5 +22,16 @@ namespace WindowsFormsApplication1
             weight = nodeWeight;
             value = nodeValue;
         }
+        public int CompareTo(treeNode anotherNode)
+        {
+            if(weight > anotherNode.weight)
+            {
+                return 1;
+            } else if (weight < anotherNode.weight)
+            {
+                return -1;
+            }
+            return 0;
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    class Converter
+    class converterClass
     {
         private int byte2 = 256;
         private int byte3 = 65536;
