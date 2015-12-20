@@ -7,16 +7,6 @@
 \\Mac\Home\Documents\Visual Studio 2012\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 \\Mac\Home\Documents\Visual Studio 2012\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 \\Mac\Home\Documents\Visual Studio 2012\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
-C:\work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
-C:\work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
-C:\work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
-C:\work\kosiakov\WindowsFormsApplication1\bin\Debug\HuffmanStream.dll
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mainForm.resources
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
-C:\work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
@@ -27,3 +17,13 @@ Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplica
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mainForm.resources
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 Z:\Documents\git\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\HuffmanStream.dll
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mainForm.resources
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb

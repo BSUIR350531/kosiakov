@@ -116,7 +116,11 @@ namespace WindowsFormsApplication1
 
         private void unzippingLogic(SaveFileDialog saveDialog)
         {
-            
+            string outputFile = saveDialog.FileName;
+            haffman.Unzip(lastOpenedExistFileName, outputFile);
+            showInfo("unzip done", zippingProcessTextCaption);
+
+            resetAllToStart();
         }
         private void zippingLogic(SaveFileDialog saveDialog)
         {

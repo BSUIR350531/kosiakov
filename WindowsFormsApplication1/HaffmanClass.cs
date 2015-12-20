@@ -103,8 +103,33 @@ namespace WindowsFormsApplication1
 
         public void Unzip(string readFile, string writeFile)
         {
+            byte[] byteArr = new byte[4];
+            byte tableKey;
+            int i, j, len = 4, tableSize;
+
+
             //1) read file, length of occurances and fill up occurances
+            FileStream readStream = new FileStream(readFile, FileMode.Open, FileAccess.Read);
+
+            Dictionary<byte, int> symbolOccurrences = new Dictionary<byte, int>();
+            for (i = 0; i < len; i++)
+            {
+                byteArr[i] = (byte)readStream.ReadByte();
+            }
+            tableSize = convert.byteToInt(byteArr);
+
+            byteArr = new byte[4];
+            for (i = 0; i < tableSize; i++)
+            {
+                tableKey = (byte)readStream.ReadByte();
+                for  (j = 0; j < len; j++)
+                {
+                    byteArr[j] = (byte)readStream.ReadByte();
+                }
+                symbolOccurrences.Add(tableKey, convert.byteToInt(byteArr));
+            }
             //2) create tree using occurances and then recognize file text
+            TreeClass tree = TreeClass.createTree(symbolOccurrences);
             //3) write to output file
         }
     }
