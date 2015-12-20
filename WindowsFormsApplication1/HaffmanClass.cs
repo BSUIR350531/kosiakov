@@ -105,7 +105,8 @@ namespace WindowsFormsApplication1
         {
             byte[] byteArr = new byte[4];
             byte tableKey;
-            int i, j, len = 4, tableSize;
+            int i, j, tableSize;
+            long len = 4;
 
 
             //1) read file, length of occurances and fill up occurances
@@ -130,7 +131,36 @@ namespace WindowsFormsApplication1
             }
             //2) create tree using occurances and then recognize file text
             TreeClass tree = TreeClass.createTree(symbolOccurrences);
+
+            byte lastRow = (byte)readStream.ReadByte();
+            len = readStream.Length - 1 - 4 - tableSize * 5;
+            StringBuilder input = new StringBuilder("");
+            for (i = 0; i < len; i++)
+            {
+                tableKey = (byte)readStream.ReadByte();
+                if (i == (readStream.Length - 2) && lastRow != 0)
+                {
+                    for (j = 0; j <= lastRow; j++)
+                    {
+                        input.Append((tableKey % 2).ToString());
+                        tableKey /= 2;
+                    }
+                } else
+                {
+                    for (j = 0; j < 8; j++)
+                    {
+                        input.Append((tableKey % 2).ToString());
+                        tableKey /= 2;
+                    }
+                }
+            }
+            readStream.Close();
+
             //3) write to output file
+            List<byte> text = tree.getByteText(input.ToString());
+            FileStream writeStream = new FileStream(writeFile, FileMode.Create);
+            writeStream.Write(text.ToArray(), 0, text.Count);
+            writeStream.Close();
         }
     }
 }

@@ -63,5 +63,31 @@ namespace WindowsFormsApplication1
                 codesTable[Convert.ToByte(root.value)] = startStr.ToString();
             }
         }
+        public List<byte> getByteText(string text)
+        {
+            int i, len = text.Length;
+            List<byte> resultText = new List<byte>();
+            for (i = 0; i < len; i++)
+            {
+                treeNode node = leafNode;
+                while (true)
+                {
+                    if (i >= len)
+                    {
+                        break;
+                    }
+                    if (node.value != null)
+                    {
+                        resultText.Add(Convert.ToByte(node.value));
+                        break;
+                    } else
+                    {
+                        node = (text[i] == '0') ? node.left : node.right;
+                        i++;                                        
+                    }                   
+                }
+            }
+            return resultText;
+        }
     }
 }
