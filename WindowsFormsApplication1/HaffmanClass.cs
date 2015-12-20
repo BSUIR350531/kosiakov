@@ -158,7 +158,7 @@ namespace WindowsFormsApplication1
 
             //3) write to output file
             List<byte> text = tree.getByteText(input.ToString());
-            FileStream writeStream = new FileStream(writeFile, FileMode.Create);
+            FileStream writeStream = new FileStream(writeFile, FileMode.Create, FileAccess.Write);
             writeStream.Write(text.ToArray(), 0, text.Count);
             writeStream.Close();
         }

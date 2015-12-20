@@ -100,8 +100,8 @@ namespace WindowsFormsApplication1
         private SaveFileDialog fileSaveDialog()
         {
             SaveFileDialog saveFileD = new SaveFileDialog();
-            saveFileD.DefaultExt = "*.hfs";
-            saveFileD.Filter = "Huffman Stream files(*.hfs)|*.hfs";
+            saveFileD.DefaultExt = isHfs? "" : "*.hfs";
+            saveFileD.Filter = isHfs? "All files(*.*)|*.*" : "Huffman Stream files(*.hfs)|*.hfs";
             saveFileD.CheckPathExists = false;
             saveFileD.ShowHelp = false;
             saveFileD.Title = saveDailogTitle;
@@ -147,7 +147,7 @@ namespace WindowsFormsApplication1
 
         private void updateActionButtonText(bool isZipping)
         {
-            actionButton.Text = isZipping ? zippingButtonText : unzippingButtonText; 
+            actionButton.Text = !isZipping ? zippingButtonText : unzippingButtonText; 
         }
 
         private void button1_Click(object sender, EventArgs e)

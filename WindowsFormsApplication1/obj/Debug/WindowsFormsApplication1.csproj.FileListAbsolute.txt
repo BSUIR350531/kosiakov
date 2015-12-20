@@ -21,9 +21,9 @@ C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Work\kosiakov\WindowsFormsApplication1\bin\Debug\HuffmanStream.dll
-C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
 C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mainForm.resources
 C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Work\kosiakov\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
