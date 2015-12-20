@@ -35,5 +35,33 @@ namespace WindowsFormsApplication1
             //should return full tree node
             return new TreeClass(nodeParser.popMinNode());
         }
+        public Dictionary<byte, string> getByteCodeTable()
+        {
+            if (leafNode == null)
+            {
+                throw new Exception("Tree' leaf node shouldn't be empty");
+            } else
+            {
+                createByteCodeTable(leafNode, "");
+                return codesTable;
+            }
+        }
+        private void createByteCodeTable(treeNode root, string startStr)
+        {
+            if (root.value == null)
+            {
+                if (root.left != null)
+                {
+                    createByteCodeTable(root.left, startStr + "0");
+                }
+                if (root.right != null)
+                {
+                    createByteCodeTable(root.right, startStr + "1");
+                }
+            } else
+            {
+                codesTable[Convert.ToByte(root.value)] = startStr.ToString();
+            }
+        }
     }
 }

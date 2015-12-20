@@ -14,7 +14,8 @@ namespace WindowsFormsApplication1
         public void Zip(string readFile, string writeFile)
         {
             //vars
-            int i; 
+            int i, j;
+            byte writeByte, pow;
             long len;
 
             //1) read file and fill up occurances
@@ -53,7 +54,7 @@ namespace WindowsFormsApplication1
             {
                 writeStream.WriteByte(occur.Key);
                 byte[] occurInByte = convert.intToByte(occur.Value);
-                for(i = 0; i < 4; i++)
+                for (i = 0; i < 4; i++)
                 {
                     writeStream.WriteByte(occurInByte[i]);
                 }
@@ -63,9 +64,41 @@ namespace WindowsFormsApplication1
             TreeClass tree = TreeClass.createTree(symbolOccurrences);
 
             //4) create code for each element from occurance dictionary
-
+            Dictionary<byte, string> codes = tree.getByteCodeTable();
+            StringBuilder resultString = new StringBuilder("");
+            len = input.Count;
+            for (i = 0; i < len; i++)
+            {
+                resultString.Append(codes[input[i]].ToString());
+            }
             //5) write symbol's code to output file
-
+            writeStream.WriteByte(Convert.ToByte(resultString.Length % 8));
+            len = resultString.Length;
+            writeByte = 0;
+            j = 0;
+            pow = 1;
+            for (i = 0; i < len; i++)
+            {
+                if(resultString[i] == '1')
+                {
+                    writeByte += pow;
+                }
+                if(j == 7)
+                {
+                    writeStream.WriteByte(writeByte);
+                    pow = 1;
+                    writeByte = 1;
+                } else
+                {
+                    pow *= 2;
+                }
+                j = (j + 1) % 8;
+            }
+            if(resultString.Length % 8 != 0)
+            {
+                writeStream.WriteByte(writeByte);
+            }
+            writeStream.Close();
         }
 
         public void Unzip(string readFile, string writeFile)
