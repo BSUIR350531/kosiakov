@@ -11,6 +11,10 @@ namespace WindowsFormsApplication1
     class HaffmanClass
     {
         private converterClass convert = new converterClass();
+        Dictionary<byte, int> symbolOccurrencesToWrite;
+        List<byte> inputToWrite;
+        StringBuilder resultStringToWrite;
+        Dictionary<byte, int> symbolOccurrencesToRead;
         public void Zip(string readFile, string writeFile)
         {
             //vars
@@ -40,10 +44,11 @@ namespace WindowsFormsApplication1
                 }
             }
             readStream.Close();
-
+            inputToWrite = input;
             //2) write length of occurances and occurances to output file: create functions for convertion int to byte and back
             FileStream writeStream = new FileStream(writeFile, FileMode.Create, FileAccess.Write);
             //write occurances length
+            symbolOccurrencesToWrite = symbolOccurrences;
             byte[] countInByte = convert.intToByte(symbolOccurrences.Count);
             for (i = 0; i < 4; i++)
             {
@@ -71,6 +76,7 @@ namespace WindowsFormsApplication1
             {
                 resultString.Append(codes[input[i]].ToString());
             }
+            resultStringToWrite = resultString;
             //5) write symbol's code to output file
             writeStream.WriteByte(Convert.ToByte(resultString.Length % 8));
             len = resultString.Length;
@@ -87,7 +93,7 @@ namespace WindowsFormsApplication1
                 {
                     writeStream.WriteByte(writeByte);
                     pow = 1;
-                    writeByte = 1;
+                    writeByte = 0;
                 } else
                 {
                     pow *= 2;
@@ -129,6 +135,7 @@ namespace WindowsFormsApplication1
                 }
                 symbolOccurrences.Add(tableKey, convert.byteToInt(byteArr));
             }
+
             //2) create tree using occurances and then recognize file text
             TreeClass tree = TreeClass.createTree(symbolOccurrences);
 
