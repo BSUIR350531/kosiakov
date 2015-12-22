@@ -10,11 +10,7 @@ namespace WindowsFormsApplication1
 
     class HaffmanClass
     {
-        private converterClass convert = new converterClass();
-        Dictionary<byte, int> symbolOccurrencesToWrite;
-        List<byte> inputToWrite;
-        StringBuilder resultStringToWrite;
-        Dictionary<byte, int> symbolOccurrencesToRead;
+        private converterClass convert = new converterClass();      
         public void Zip(string readFile, string writeFile)
         {
             //vars
@@ -44,11 +40,11 @@ namespace WindowsFormsApplication1
                 }
             }
             readStream.Close();
-            inputToWrite = input;
+            
             //2) write length of occurances and occurances to output file: create functions for convertion int to byte and back
             FileStream writeStream = new FileStream(writeFile, FileMode.Create, FileAccess.Write);
             //write occurances length
-            symbolOccurrencesToWrite = symbolOccurrences;
+            
             byte[] countInByte = convert.intToByte(symbolOccurrences.Count);
             for (i = 0; i < 4; i++)
             {
@@ -76,7 +72,7 @@ namespace WindowsFormsApplication1
             {
                 resultString.Append(codes[input[i]].ToString());
             }
-            resultStringToWrite = resultString;
+            
             //5) write symbol's code to output file
             writeStream.WriteByte(Convert.ToByte(resultString.Length % 8));
             len = resultString.Length;

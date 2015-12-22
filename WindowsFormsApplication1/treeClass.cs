@@ -79,6 +79,7 @@ namespace WindowsFormsApplication1
                     if (node.value != null)
                     {
                         resultText.Add(Convert.ToByte(node.value));
+                        i--;
                         break;
                     } else
                     {
